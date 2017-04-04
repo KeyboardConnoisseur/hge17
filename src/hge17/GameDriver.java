@@ -5,6 +5,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class GameDriver extends BasicGame
@@ -15,7 +16,9 @@ public class GameDriver extends BasicGame
 	}
 
 	@Override
-	public void init(GameContainer gc) throws SlickException {}
+	public void init(GameContainer gc) throws SlickException {
+		Input.disableControllers();
+	}
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {}
