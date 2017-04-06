@@ -1,46 +1,45 @@
 package hge17;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
-public class GameDriver extends BasicGame
-{
-	public GameDriver(String gamename)
-	{
-		super(gamename);
+public class GameDriver extends StateBasedGame {
+	// globals
+	public static final String[] DEVELOPERS = { "Gage Boyd", "Kyle Domingos", "Aaron Goree", "Jeffrey Ran" };
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+	public static final int FPS = 60;
+	public static final double VERSION = 0.1;
+
+	// game state identifiers
+	public final int SPLASH_SCREEN = 0;
+	public final int MAIN_MENU = 1;
+	public final int GAMEPLAY = 2;
+	public final int PAUSE_MENU = 3;
+
+	// constructor
+	public GameDriver(String gameName) {
+		super(gameName);
 	}
 
-	@Override
-	public void init(GameContainer gc) throws SlickException {
-		Input.disableControllers();
+	public void initStatesList(GameContainer gc) throws SlickException {
+		this.addState(new Gameplay());
 	}
 
-	@Override
-	public void update(GameContainer gc, int i) throws SlickException {}
-
-	@Override
-	public void render(GameContainer gc, Graphics g) throws SlickException
-	{
-		g.drawString("Howdy!", 10, 10);
-	}
-
-	public static void main(String[] args)
-	{
-		try
-		{
-			AppGameContainer appgc;
-			appgc = new AppGameContainer(new GameDriver("Simple Slick Game"));
-			appgc.setDisplayMode(640, 480, false);
-			appgc.start();
+	public static void main(String[] args) {
+		try {
+			AppGameContainer game = new AppGameContainer(new GameDriver("hge17 v." + VERSION));
+			game.setDisplayMode(WIDTH, HEIGHT, true);
+			game.setTargetFrameRate(FPS);
+			game.setShowFPS(true);
+			game.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
 		}
-		catch (SlickException ex)
-		{
-			Logger.getLogger(GameDriver.class.getName()).log(Level.SEVERE, null, ex);
-		}
+
 	}
 }
