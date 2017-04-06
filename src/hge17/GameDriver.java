@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameDriver extends StateBasedGame {
 	// globals
-	public static final String[] DEVELOPERS = { "Gage Boyd", "Kyle Domingos", "Aaron Goree", "Jeffrey Ran" };
+	public static final String[] DEVELOPERS = { "Gage Boyd", "Kyle Domingos", "Aaron Goree", "Connor Wiebe" };
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	public static final int FPS = 60;
@@ -35,6 +35,7 @@ public class GameDriver extends StateBasedGame {
 			AppGameContainer game = new AppGameContainer(new GameDriver("hge17 v." + VERSION));
 			game.setDisplayMode(WIDTH, HEIGHT, true);
 			game.setTargetFrameRate(FPS);
+			game.setVSync(true);
 			game.setShowFPS(true);
 			game.start();
 		} catch (SlickException e) {

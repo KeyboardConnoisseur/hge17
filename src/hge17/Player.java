@@ -1,13 +1,14 @@
 package hge17;
 
 public class Player extends Thing {
+	private final int MAX_SPEED = 120;
+	
 	private int speedY;
 	private int speedX;
-	private final int MAX_SPEED = 120;
+	private int maxSpeed = 15;
 
 	private double posX;
 	private double posY;
-	private int heading;
 
 	// default constructor
 	public Player() {
@@ -20,24 +21,25 @@ public class Player extends Thing {
 		this.posY = y;
 	}
 
-	public void speedUpX() {
-		if (this.speedX < this.MAX_SPEED)
-			this.speedX += 5;
+	// Movement Helpers
+	public void speedUpX(int n) {
+		if (this.speedX < this.maxSpeed)
+			this.speedX += n;
 	}
 
-	public void speedUpY() {
-		if (this.speedY > -this.MAX_SPEED)
-			this.speedY -= 5;
+	public void speedUpY(int n) {
+		if (this.speedY > -this.maxSpeed)
+			this.speedY -= n;
 	}
 
-	public void slowDownX() {
-		if (this.speedX > -this.MAX_SPEED)
-			this.speedX -= 5;
+	public void slowDownX(int n) {
+		if (this.speedX > -this.maxSpeed)
+			this.speedX -= n;
 	}
 
-	public void slowDownY() {
-		if (this.speedY < this.MAX_SPEED)
-			this.speedY += 5;
+	public void slowDownY(int n) {
+		if (this.speedY < this.maxSpeed)
+			this.speedY += n;
 	}
 
 	public void setSpeedY(int n) {
@@ -68,8 +70,14 @@ public class Player extends Thing {
 	}
 
 	// mutators for misc variables
-	public void setHeading(int h) {
-		this.heading = h;
+	public void setMaxSpeed(int n) {
+		this.maxSpeed = n;
+	}
+	public void changeMaxSpeed(int n) {
+		if (this.maxSpeed < this.MAX_SPEED)
+			this.maxSpeed += n;
+		if (this.maxSpeed > MAX_SPEED)
+			this.maxSpeed = MAX_SPEED;
 	}
 
 	// accessors for player position
@@ -86,7 +94,7 @@ public class Player extends Thing {
 	}
 
 	// accessors for misc variables
-	public int getHeading() {
-		return this.heading;
+	public int getMaxSpeed() {
+		return this.maxSpeed;
 	}
 }
